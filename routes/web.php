@@ -7,7 +7,6 @@ use Inertia\Inertia;
 
 Route::middleware(['guest'])->group(function () {
     Route::post('login', [AuthController::class, 'login']);
-    Route::inertia('login', 'Login')->name('login');
 });
 
 Route::inertia('/', 'Welcome');

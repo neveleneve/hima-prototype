@@ -11,24 +11,27 @@
                 </Link>
             </template>
         </PageHeader>
-        <div>Halo</div>
     </AuthLayout>
 
-    <Head title="Tambah Pengguna | Dashboard SIMATEKAPP" />
+    <Head title="Detail Pengguna | Dashboard SIMATEKAPP" />
 </template>
 
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue"
 import PageHeader from '@/Components/PageHeader.vue'
-import { Home, User, ChevronLeft, CirclePlus, Loader2 } from 'lucide-vue-next'
+import { Home, User, ChevronLeft, Loader2, SquarePen } from 'lucide-vue-next'
 import { onMounted, ref, computed } from 'vue'
 import { router } from '@inertiajs/vue3'
 
 const processing = computed(() => router.processing)
 
+const props = defineProps({
+    user: Object
+})
+
 const breadcrumbItems = [
     { label: 'Dashboard', to: '/admin', icon: Home },
     { label: 'Pengguna', to: '/admin/pengguna', icon: User },
-    { label: 'Edit', to: '/admin/pengguna/create', icon: CirclePlus },
+    { label: 'Detail', to: '/admin/pengguna/' + props.user.id, icon: SquarePen },
 ]
 </script>
