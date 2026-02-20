@@ -1,0 +1,19 @@
+import { createApp, h } from "vue";
+import { createInertiaApp, Head, Link } from "@inertiajs/vue3";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+
+createInertiaApp({
+    resolve: (name) => {
+        const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
+        let page = pages[`./Pages/${name}.vue`];
+        page.default.layout = page.default.layout || AuthLayout;
+        return page;
+    },
+    setup({ el, App, props, plugin }) {
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .component("Link", Link)
+            .component("Head", Head)
+            .mount(el);
+    },
+});
